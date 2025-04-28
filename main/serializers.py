@@ -22,12 +22,12 @@ class EnrollmentSerializer(serializers.ModelSerializer):
 
 
 class ListStudentEnrollmentSerializer(serializers.ModelSerializer):
-    course = serializers.ReadOnlyField(source='course')
+    courses = serializers.ReadOnlyField()
     period = serializers.SerializerMethodField()
 
     class Meta:
         model = Enrollment
-        fields = ['course', 'period']
+        fields = ['courses', 'period']
 
     def get_period(self, obj):
         return obj.get_period_display()
@@ -39,4 +39,4 @@ class ListCourseStudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Enrollment
-        fields = ['student.full_name']
+        fields = ['student_name']

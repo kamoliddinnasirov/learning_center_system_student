@@ -38,3 +38,13 @@ class ListCourseStudents(generics.ListAPIView):
     def get_queryset(self):
         queryset = Enrollment.objects.filter(course_id=self.kwargs['pk'])
         return queryset
+    
+
+class ListStudentEnrollments(generics.ListAPIView):
+    serializer_class = serializers.ListStudentEnrollmentSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        data = Enrollment.objects.filter(student_id=self.kwargs['pk'])
+        return data

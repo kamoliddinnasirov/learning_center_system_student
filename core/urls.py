@@ -16,7 +16,7 @@ urlpatterns = [
     # API
     path("", include(router.urls)),
     path("course/<int:pk>/enrollments", views.ListCourseStudents.as_view()),
-    # path("student/<int:pk>/enrollments")
+    path("student/<int:pk>/enrollments", views.ListStudentEnrollments.as_view()),
 
     #Django admin
     path('admin/', admin.site.urls),
